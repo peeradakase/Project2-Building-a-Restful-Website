@@ -1,0 +1,33 @@
+body {
+
+
+}
+
+nav {
+  margin-top: 40px;
+  width: 80%;
+  margin-left: 130px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  display: flex;
+}
+
+.logo {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pic-new-arrival {
+  width: 50%;
+  height: 70%;
+}
+
+.showcase-text {
+  padding: 8rem;
+}
+
+.showcase-img {
+  margin-top: 20px;
+  background-size: cover;
+  min-height: 50rem;
+}

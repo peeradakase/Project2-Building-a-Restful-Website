@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project2 - Building a Restful Website</title>
+  </head>
+  <body>
+    <nav>
+      <hr />
+      <div>Secret Heart store</div>
+      <hr />
+      <div>
+        <img src="" alt="" />
+        <div>Hi MO</div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h1>Select Payment method</h1>
+      <form action="/action_page.php">
+        <p>Please select your favorite Web language:</p>
+        <input
+          type="radio"
+          id="creditCard"
+          name="paymentMethod"
+          value="creditCard"
+        />
+        <label for="creditCard">Credit card</label>
+        <br />
+        <input
+          type="radio"
+          id="bankTransfer"
+          name="paymentMethod"
+          value="bankTransfer"
+        />
+        <label for="bankTransfer">Bank transfer</label>
+        <br />
+        <input type="radio" id="payMe" name="paymentMethod" value="payMe" />  
+        <label for="payMe">Pay me</label>
+        <br />
+
+        <input type="radio" id="paypal" name="paymentMethod" value="paypal" />  
+        <label for="paypal">PayPal</label>
+      </form>
+    </div>
+
+    <h1>Delivery Address</h1>
+    <div>
+      <form action="">
+        <div>
+          <input
+            type="text"
+            id="fname"
+            name="fname"
+            value=""
+            placeholder=" NAME"
+          />
+          <br />
+          <input
+            type="text"
+            id="fname"
+            name="fname"
+            value=""
+            placeholder="PHONE NUMBER"
+          />
+        </div>
+        <textarea id="w3review" name="w3review" rows="14" cols="50">
+        </textarea>
+        <button>Submit</button>
+    </div>
+  </body>
+</html>
