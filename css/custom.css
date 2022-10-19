@@ -3,18 +3,53 @@ body {
 
 }
 
+.m-t-15 {
+  margin-top: 15px;
+}
+
+.m-t-24 {
+  margin-top: 24px;
+}
+
+.m-t-100 {
+  margin-top: 100px;
+}
+
+.m-l-570 {
+  margin-left: 570px;
+}
+
+.m-l-498 {
+  margin-left: 498px;
+}
+
+
 nav {
-  margin-top: 40px;
+  margin-top: 10px;
+  margin-bottom: 50px;
   width: 80%;
   margin-left: 130px;
-  border-top-style: solid;
   border-bottom-style: solid;
   display: flex;
+  border-color: #eee;
+}
+
+.navbar-nav {
+  margin: 0;
+}
+
+.navbar-collapse {
+  flex-basis: auto;
+  flex-grow: 0.1;
+  width: 0;
 }
 
 .logo {
   margin: 0 auto;
-  text-align: center;
+  padding-top: 20px;
+  padding-left: 200px;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 25px;
 }
 
 .pic-new-arrival {
@@ -24,10 +59,27 @@ nav {
 
 .showcase-text {
   padding: 8rem;
+  padding-top: 45px;
 }
 
 .showcase-img {
   margin-top: 20px;
   background-size: cover;
   min-height: 50rem;
+}
+
+.mb-0 {
+  font-size: 20px;
+}
+
+.h2, h2 {
+  font-size: 2rem;
+}
+
+.text {
+  display: inline;
+  font-size: 34px;
+  font-family: 'DM Serif Display', serif;
+  letter-spacing: -0.25px;
+  line-height: 44px;
 }

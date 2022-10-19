@@ -4,19 +4,23 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/custom.css" />
   <title>Project2 - Building a Restful Website</title>
 </head>
 <body>
+
   <h1>My Orders</h1>
 <div>
-  <table>
+  <table class="table">
     <tr>
-      <th>Product</th>
-      <th>Subtotal</th>
-      <th>Shipping</th>
-      <th>Payment Method</th>
-      <th>Address</th>
-      <th>Total</th>
+      <th scope="col">Product</th>
+      <th scope="col">Subtotal</th>
+      <th scope="col">Shipping</th>
+      <th scope="col">Payment Method</th>
+      <th scope="col">Address</th>
+      <th scope="col">Total</th>
     </tr>
     <tr>
       <td>Cotton dress</td>
@@ -29,6 +33,7 @@
   </table>
 
   <button>ORDER AGAIN</button>
+  <script src="./js/bootstrap.bundle.min.js"></script>
 </div>
 </body>
 </html>
