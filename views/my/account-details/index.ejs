@@ -1,0 +1,99 @@
+<%- contentFor('styles') %>
+
+<%- contentFor('body') %>
+<div class="container">
+  <h1>Account Details</h1>
+  <div class="input-account-details">
+    <form action="form-account-details">
+      <div class="form-floating mb-3">
+        <input
+          type="name"
+          class="form-control"
+          id="floatingInput"
+          placeholder=" NAME"
+        />
+        <label for="floatingInput"> NAME</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          class="form-control is-invalid"
+          id="floatingInput"
+          placeholder="EMAIL"
+        />
+        <label for="floatingInput">EMAIL</label>
+        <div id="validationServer03Feedback" class="invalid-feedback">
+          Please provide a valid email.
+        </div>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="address"
+          class="form-control"
+          id="floatingInput"
+          placeholder="ADDRESS"
+        />
+        <label for="floatingInput">ADDRESS</label>
+      </div>
+
+      <div class="form-floating m-b-30">
+        <input
+          type="phone number"
+          class="form-control is-invalid"
+          id="floatingInput"
+          placeholder="PHONE NUMBER"
+        />
+        <label for="floatingInput">PHONE NUMBER</label>
+        <div id="validationServer03Feedback" class="invalid-feedback">
+          Please provide a valid phone number.
+        </div>
+      </div>
+
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="general-button btn btn-primary mb-3" type="button">
+          UPDATE MY DETAILS
+        </button>
+      </div>
+
+      <div class="form-floating mb-3 m-t-30">
+        <input
+          type="old-password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="OLD PASSWORD"
+        />
+        <label for="floatingPassword">OLD PASSWORD</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="new-password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="NEW PASSWORD"
+        />
+        <label for="floatingPassword">NEW PASSWORD</label>
+      </div>
+
+      <div class="form-floating">
+        <input
+          type="confirm-password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="CONFIRM PASSWORD"
+        />
+        <label for="floatingPassword">CONFIRM PASSWORD</label>
+      </div>
+
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="general-button btn btn-primary m-t-30 m-b-100" type="button">
+          UPDATE MY PASSWORD
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- contentFor('scripts') %>

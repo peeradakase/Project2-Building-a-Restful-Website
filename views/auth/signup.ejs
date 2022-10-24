@@ -1,0 +1,67 @@
+<%- contentFor('styles') %> <%- contentFor('body') %>
+<h1>Sign Up</h1>
+<div>
+  <form action="">
+    <div class="form-floating mb-3">
+      <input
+        type="name"
+        class="form-control"
+        id="floatingInput"
+        placeholder=" NAME"
+      />
+      <label for="floatingInput"> NAME</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control is-invalid"
+        id="floatingInput"
+        placeholder="EMAIL"
+      />
+      <label for="floatingInput">EMAIL</label>
+      <div id="validationServer03Feedback" class="invalid-feedback">
+        Please provide a valid email.
+      </div>
+    </div>
+
+    <div class="form-floating m-b-30">
+      <input
+        type="phone number"
+        class="form-control is-invalid"
+        id="floatingInput"
+        placeholder="PHONE NUMBER"
+      />
+      <label for="floatingInput">PHONE NUMBER</label>
+      <div id="validationServer03Feedback" class="invalid-feedback">
+        Please provide a valid phone number.
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="PASSWORD"
+      />
+      <label for="floatingPassword"> PASSWORD</label>
+    </div>
+
+    <div class="form-floating">
+      <input
+        type="confirm-password"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="CONFIRM PASSWORD"
+      />
+      <label for="floatingPassword">CONFIRM PASSWORD</label>
+    </div>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="general-button btn btn-primary m-t-30 m-b-100" type="button">
+          Sign Up
+        </button>
+      </div>
+  </form>
+</div>

@@ -1,0 +1,32 @@
+.m-b-30 {
+  margin-bottom: 30px;
+}
+
+.m-b-100 {
+  margin-bottom: 100px;
+}
+
+.m-t-30 {
+  margin-top: 30px;
+}
+
+.input-account-details {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 69px;
+  text-align: center;
+}
+
+.general-button {
+  background-color: #000;
+  border: none;
+}
+
+.general-button:hover {
+  background-color: #374349;
+  transition: 0.1s;
+
+  }
