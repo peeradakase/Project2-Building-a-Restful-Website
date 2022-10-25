@@ -5,7 +5,9 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:watch": "nodemon ./serve.js"
+    "start:watch": "nodemon ./serve.js",
+    "prisma:init": "npx prisma init",
+    "prisma:migrate:dev": "npx prisma migrate dev"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
   },
   "homepage": "https://github.com/peeradakase/Project2-Building-a-Restful-Website#readme",
   "dependencies": {
+    "@prisma/client": "^4.5.0",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "express-ejs-layouts": "^2.5.1"

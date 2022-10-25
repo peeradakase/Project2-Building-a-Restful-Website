@@ -1,4 +1,8 @@
- <div class="container">
+<%- contentFor('styles') %>
+<link rel="stylesheet" href="/style/confirmation.css">
+
+<%- contentFor('body') %>
+<div class="container">
       <h1>Select Payment method</h1>
       <form action="/action_page.php">
         <p>Please select your favorite Web language:</p>
@@ -52,3 +56,5 @@
         <button>Submit</button>
         <script src="./js/bootstrap.bundle.min.js"></script>
     </div>
+
+<%- contentFor('scripts') %>
