@@ -23,15 +23,31 @@ body {
   margin-left: 498px;
 }
 
+.p-l-33 {
+  padding-left: 33px;
+}
+
+.dropdown-and-username {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 44px;
+}
+
+
 
 nav {
   margin-top: 10px;
   margin-bottom: 50px;
   width: 80%;
-  margin-left: 130px;
   border-bottom-style: solid;
+  position: relative;   border-color: #eee;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
-  border-color: #eee;
+}
+
+nav > div {
+  width: 33%;
 }
 
 .navbar-nav {
@@ -46,10 +62,9 @@ nav {
 
 .logo {
   margin: 0 auto;
-  padding-top: 20px;
-  padding-left: 200px;
-  font-family: 'Bodoni Moda', serif;
+  padding-top: 20px;  font-family: 'Bodoni Moda', serif;
   font-size: 25px;
+  text-align: center;
 }
 
 .pic-new-arrival {

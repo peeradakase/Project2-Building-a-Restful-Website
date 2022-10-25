@@ -15,6 +15,10 @@ const productsController = async (req, res) => {
     where: {
       //แปลงstr ให้เป็นตัวเลขด้วยparseInt แล้วเอาไปหาด้วยId
       id: parseInt(id)
+    },
+    //ตอนที่หาproduct ต้องinclude image มาด้วย
+    include: {
+      images: true
     }
   });
 

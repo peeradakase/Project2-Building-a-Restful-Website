@@ -7,24 +7,18 @@
   <div class="container text-center">
     <div class="row">
       <div class="col-6">
-        <div>
-          <img class="heart-t-1" src="/img/heart-t-1.png" alt="" />
-        </div>
-        <div>
-          <img src="" alt="" />
-        </div>
-        <div>
-          <img src="" alt="" />
-        </div>
-        <div>
-          <img src="" alt="" />
+        <div id="product-images">
+
         </div>
       </div>
 
       <div class="col-5">
         <div class="description-product">
-          <h5 class="text-description-center">Baby Tee - White</h2>
-          <h5 class="text-description-center">90 HKD</h3>
+          <h5 id="product-name" class="text-description-center"></h5>
+          <h5 class="text-description-center">
+            <span id="product-price" class="text-description-center"></span>
+            <span>HKD</span>
+          </h5>
           <p class="text-description-center">Size: Select a size</p>
           <button type="button" class="btn btn-outline-dark">M</button>
           <button type="button" class="btn btn-outline-dark">L</button>
@@ -36,3 +30,31 @@
 </div>
 
 <%- contentFor('scripts') %>
+<script>
+  //1 browserขอข้อมูลจาก routeนี้
+  axios.get('/api/products/1')
+    //2 ถ้า get ทำงานเสด .thenถ้าจะเริ่มทำงาน
+    .then((result) => {
+      //result คือข้อมูล ที่Apiคืนมาให้เรา ในรูปobj
+      //data คือ key ที่เป็นก้อนobjใหญ่
+      //id, name, price, image พวกนี้คือ keyในก้อนobjเล็ก
+      //ถ้าอยากเหนภาพ ให้ดูในconsole.log
+      const { data: {id, name, price, images }} = result;
+      console.log('result: ' ,result);
+
+      $('#product-name').text(name);
+      $('#product-price').text(price);
+
+      //TODO: add buy product action
+
+      //for (let = i; i < images.length; i+=1) {
+      //  images[i].url วนทุกรูปในurl(ที่อยู่ของรูปเรา)ที่อยุ่ในobj
+      //}
+      images.forEach((image) => {
+        $('#product-images').append(`<div><img class="heart-t-1" src="${image.url}" alt=""></div>`)
+      })
+    })
+
+
+
+</script>
