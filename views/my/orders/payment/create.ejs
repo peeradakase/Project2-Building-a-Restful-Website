@@ -1,11 +1,13 @@
 <%- contentFor('styles') %>
-<link rel="stylesheet" href="/style/confirmation.css">
+<link rel="stylesheet" href="/style/payment.css">
 
 <%- contentFor('body') %>
 <div class="container">
       <h1>Select Payment method</h1>
+      <p class="text-center">Please select your favorite Web language:</p>
+
+       <div>
       <form action="/action_page.php">
-        <p>Please select your favorite Web language:</p>
         <input
           type="radio"
           id="creditCard"
@@ -29,6 +31,7 @@
         <input type="radio" id="paypal" name="paymentMethod" value="paypal" />  
         <label for="paypal">PayPal</label>
       </form>
+      </div>
     </div>
 
     <h1>Delivery Address</h1>

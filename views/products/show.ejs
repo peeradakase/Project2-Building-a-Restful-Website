@@ -7,9 +7,7 @@
   <div class="container text-center">
     <div class="row">
       <div class="col-6">
-        <div id="product-images">
-
-        </div>
+        <div id="product-images"></div>
       </div>
 
       <div class="col-5">
@@ -19,10 +17,26 @@
             <span id="product-price" class="text-description-center"></span>
             <span>HKD</span>
           </h5>
+
+          <p class="text-left">Color: Select a color</p>
+          <div class="product-color-box">
+            <button class="white m-l-r-5"></button>
+            <button class="purple m-l-r-5"></button>
+            <button class="black m-l-r-5"></button>
+          </div>
+
           <p class="text-description-center">Size: Select a size</p>
-          <button type="button" class="btn btn-outline-dark">M</button>
-          <button type="button" class="btn btn-outline-dark">L</button>
-          <button type="button" class="buy-button btn btn-outline-dark">BUY</button>
+          <div class="box-size-buttons">
+            <button type="button" class="m-l-r-5 btn btn-outline-dark">XXS</button>
+            <button type="button" class="m-l-r-5 btn btn-outline-dark">XS</button>
+            <button type="button" class="m-l-r-5 btn btn-outline-dark">S</button>
+            <button type="button" class="m-l-r-5 btn btn-outline-dark">M</button>
+            <button type="button" class="m-l-r-5 btn btn-outline-dark">L</button>
+            <button type="button" class="m-l-r-5 btn btn-outline-dark">XL</button>
+          </div>
+          <button type="button" class="buy-button btn btn-outline-dark">
+            BUY
+          </button>
         </div>
       </div>
     </div>
@@ -31,19 +45,32 @@
 
 <%- contentFor('scripts') %>
 <script>
-  //1 browserขอข้อมูลจาก routeนี้
-  axios.get('/api/products/1')
-    //2 ถ้า get ทำงานเสด .thenถ้าจะเริ่มทำงาน
+  // Find product Id from url
+  console.log(window.location.href, ":window.location.href");
+  console.log(window.location.href.split("/"), ":window.location.href.split");
+  console.log(
+    window.location.href.split("/").reverse(),
+    ":window.location.href.split.reverse()"
+  );
+
+  const productId = window.location.href.split("/").reverse()[0];
+
+  // browserขอข้อมูลจาก routeนี้
+  axios
+    .get(`/api/products/${productId}`)
+    //ถ้า get ทำงานเสด .thenถ้าจะเริ่มทำงาน
     .then((result) => {
       //result คือข้อมูล ที่Apiคืนมาให้เรา ในรูปobj
       //data คือ key ที่เป็นก้อนobjใหญ่
       //id, name, price, image พวกนี้คือ keyในก้อนobjเล็ก
       //ถ้าอยากเหนภาพ ให้ดูในconsole.log
-      const { data: {id, name, price, images }} = result;
-      console.log('result: ' ,result);
+      const {
+        data: { id, name, price, images },
+      } = result;
+      console.log("result: ", result);
 
-      $('#product-name').text(name);
-      $('#product-price').text(price);
+      $("#product-name").text(name);
+      $("#product-price").text(price);
 
       //TODO: add buy product action
 
@@ -51,10 +78,17 @@
       //  images[i].url วนทุกรูปในurl(ที่อยู่ของรูปเรา)ที่อยุ่ในobj
       //}
       images.forEach((image) => {
-        $('#product-images').append(`<div><img class="heart-t-1" src="${image.url}" alt=""></div>`)
-      })
-    })
+        $("#product-images").append(
+          `<div><img class="heart-t-1" src="${image.url}" alt=""></div>`
+        );
+      });
+    });
 
-
-
+  // Color Buttn is clicked
+  $(".product-color-box button").click(function (e) {
+    //remove Active class from all button
+    $(".product-color-box button").removeClass("active");
+    //add Active class to button which is clicked
+    $(this).addClass("active");
+  });
 </script>
