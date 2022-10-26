@@ -1,13 +1,13 @@
 <%- contentFor('styles') %>
-<link rel="stylesheet" href="/style/payment.css">
+<link rel="stylesheet" href="/styles/payment.css" />
 
 <%- contentFor('body') %>
 <div class="container">
-      <h1>Select Payment method</h1>
-      <p class="text-center">Please select your favorite Web language:</p>
+  <h4 class="m-b-22 text-center">Please select your payment method</h4>
 
-       <div>
-      <form action="/action_page.php">
+  <div class="box-form">
+    <form action="/action_page.php">
+      <div class="m-l-r-7">
         <input
           type="radio"
           id="creditCard"
@@ -15,7 +15,9 @@
           value="creditCard"
         />
         <label for="creditCard">Credit card</label>
-        <br />
+      </div>
+
+      <div class="m-l-r-7">
         <input
           type="radio"
           id="bankTransfer"
@@ -23,41 +25,68 @@
           value="bankTransfer"
         />
         <label for="bankTransfer">Bank transfer</label>
-        <br />
-        <input type="radio" id="payMe" name="paymentMethod" value="payMe" />  
-        <label for="payMe">Pay me</label>
-        <br />
+      </div>
 
-        <input type="radio" id="paypal" name="paymentMethod" value="paypal" />  
+      <div class="m-l-r-7">
+        <input type="radio" id="payMe" name="paymentMethod" value="payMe" />
+        <label for="payMe">Pay me</label>
+      </div>
+
+      <div class="m-l-r-7">
+        <input type="radio" id="paypal" name="paymentMethod" value="paypal" />
         <label for="paypal">PayPal</label>
-      </form>
+      </div>
+    </form>
+  </div>
+</div>
+
+<h4 class="text-center text-delivery-address">Delivery Address</h4>
+<div class="box-delivery">
+  <form action="">
+    <div class="form-floating mb-3">
+      <input
+        type="name"
+        class="form-control"
+        id="floatingInput"
+        placeholder=" NAME"
+      />
+      <label for="floatingInput"> NAME</label>
+    </div>
+
+    <div class="form-floating m-b-6">
+      <input
+        type="phone number"
+        class="form-control is-invalid"
+        id="floatingInput"
+        placeholder="PHONE NUMBER"
+      />
+      <label for="floatingInput">PHONE NUMBER</label>
+
+      <div id="validationServer03Feedback" class="invalid-feedback">
+        Please provide a valid phone number.
       </div>
     </div>
 
-    <h1>Delivery Address</h1>
-    <div>
-      <form action="">
-        <div>
-          <input
-            type="text"
-            id="fname"
-            name="fname"
-            value=""
-            placeholder=" NAME"
-          />
-          <br />
-          <input
-            type="text"
-            id="fname"
-            name="fname"
-            value=""
-            placeholder="PHONE NUMBER"
-          />
-        </div>
-        <textarea id="w3review" name="w3review" rows="14" cols="50">
-        </textarea>
-        <button>Submit</button>
-        <script src="./js/bootstrap.bundle.min.js"></script>
+    <div class="form-floating mb-3">
+      <textarea
+        type="address"
+        class="form-control"
+        placeholder="ADDRESS"
+        id="floatingInput"
+        style="height: 100px">
+      </textarea>
+      <label for="floatingInput">Delivery Address</label>
     </div>
 
-<%- contentFor('scripts') %>
+    <div class="m-t-32 d-grid gap-2 col-6 mx-auto">
+      <button
+        class="general-button btn btn-primary m-t-30 m-b-100"
+        type="button"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+
+  <%- contentFor('scripts') %>
+</div>

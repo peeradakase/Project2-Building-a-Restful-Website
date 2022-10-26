@@ -1,0 +1,30 @@
+.confirmed-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: green;
+}
+
+.container-confirmed-order {
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background-color: #e3e6e8;
+}
+
+.text-center {
+  text-align: center;
+}
+
+h3 {
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 35px;
+}
+
+.box {
+  border: 1px solid #ced5dc;
+  border-radius: 0.5rem;
+}

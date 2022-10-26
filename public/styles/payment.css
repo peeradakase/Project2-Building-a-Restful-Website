@@ -1,3 +1,37 @@
 .text-center {
   text-align: center;
 }
+
+.box-form {
+  font-size: 18px;
+  margin: 0 auto;
+  width: 20%;
+}
+
+.m-l-r-7 {
+  margin: 7px 0;
+}
+
+.m-b-6 {
+  margin-bottom: 6px;
+}
+
+.m-b-10 {
+  margin-bottom: 10px;
+}
+
+.m-b-22 {
+  margin-bottom: 22px;
+}
+
+.text-delivery-address {
+  margin-top: 60px;
+}
+
+.box-delivery {
+    margin-top: 36px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 22px;
+    width: 24%;
+}
