@@ -15,7 +15,9 @@
           ></div>
           <div class="col-lg-6 order-lg-1 my-auto showcase-text">
             <h2 class="black-text">New Arrivals</h2>
-            <p class="black-text lead mb-0">Latest styles designed by Secret   Heart store</p>
+            <p class="black-text lead mb-0">
+              Latest styles designed by Secret Heart store
+            </p>
           </div>
         </div>
       </a>
@@ -31,8 +33,7 @@
         <div class="text">Best Sellers</div>
         <hr />
         <div class="images-best-sellers">
-          <div id="best-sellers-row" class="row row-cols-2">
-          </div>
+          <div id="best-sellers-row" class="row row-cols-2"></div>
         </div>
       </div>
 
@@ -42,64 +43,7 @@
         <div class="text">#Secret Heart store girls</div>
         <hr />
         <div class="container-secret-heart-store-girls text-center">
-          <div class="row row-cols-4">
-            <div class="col">
-              <div>
-                <img
-                  width="300"
-                  height="400"
-                  src="./img/s-3.jpeg"
-                  alt="review-1"
-                />
-              </div>
-              <div class="text-review-1">
-                <h6 class="m-t-10">Mo x Cozy set</h6>
-                <h6>@jujucloe</h6>
-              </div>
-            </div>
-            <div class="col">
-              <div>
-                <img
-                  width="300"
-                  height="400"
-                  src="./img/s-4.jpeg"
-                  alt="review-2"
-                />
-              </div>
-              <div class="text-review-2">
-                <h6 class="m-t-10">Nucharin x Summer Floral dress</h6>
-                <h6>@mommyyyy</h6>
-              </div>
-            </div>
-            <div class="col">
-              <div>
-                <img
-                  width="300"
-                  height="400"
-                  src="./img/s-1.jpeg"
-                  alt="review-3"
-                />
-              </div>
-              <div class="text-review-3">
-                <h6 class="m-t-10">Erica x Korean Hanbok top</h6>
-                <h6>@ericacute</h6>
-              </div>
-            </div>
-            <div class="col">
-              <div>
-                <img
-                  width="300"
-                  height="400"
-                  src="./img/s-2.jpeg"
-                  alt="review-4"
-                />
-              </div>
-              <div class="text-review-3">
-                <h6 class="m-t-10">Luna x Korean Hanbok top</h6>
-                <h6>@mooncake</h6>
-              </div>
-            </div>
-          </div>
+          <div id="secret-heart-store-girls-row" class="row row-cols-4"></div>
         </div>
 
         <footer>
@@ -117,38 +61,37 @@
 </div>
 
 <%- contentFor('scripts') %>
-  <script>
-    function getNewArrivalProduct() {
-      axios
-      .get('/api/products/new-arrival')
-      .then((result) => {
-        //reult.data.images
-        // 1. Show New arrival product image
-        console.log('result: ',result)
-        const { data: { images, id } } = result;
-        console.log('images: ',images)
-        const productImage = images[0];
+<script>
+  function getNewArrivalProduct() {
+    axios.get("/api/products/new-arrival").then((result) => {
+      //reult.data.images
+      // 1. Show New arrival product image
+      console.log("result: ", result);
+      const {
+        data: { images, id },
+      } = result;
+      console.log("images: ", images);
+      const productImage = images[0];
 
+      if (productImage) {
+        $("#new-arrival-product-image").append(
+          `<img src="${productImage.url}" alt="">`
+        );
+      }
 
-        if (productImage) {
-          $('#new-arrival-product-image').append(`<img src="${productImage.url}" alt="">`)
-        }
+      // 2. Change new arrival product link
+      $("#new-arrival-link").attr("href", `products/${id}`);
+    });
+  }
 
-        // 2. Change new arrival product link
-        $('#new-arrival-link').attr('href', `products/${id}`)
-      });
-    }
-
-    function getBestSellerProducts() {
-      // get Best Seller Products
-      axios
-        .get('/api/products/best-seller')
-        .then((result) => {
-          // data is best seller products
-          const { data } = result;
-          data.forEach((product) => {
-            const { id, images, name, price } = product;
-            $('#best-sellers-row').append(`
+  function getBestSellerProducts() {
+    // get Best Seller Products
+    axios.get("/api/products/best-seller").then((result) => {
+      // data is best seller products
+      const { data } = result;
+      data.forEach((product) => {
+        const { id, images, name, price } = product;
+        $("#best-sellers-row").append(`
             <div class="col">
               <a class="black-text" href="products/${id}">
                 <div class="box-image-1-best-sellers">
@@ -167,12 +110,41 @@
                 </div>
               </a>
             </div>
-            `)
+            `);
+      });
+    });
+  }
 
-          })
-        })
-    }
+  function getStoreGirlsProducts() {
+    // get Store Girls Products
+    axios.get("/api/products/store-girls").then((result) => {
+      // data is Store Girls products
+      const { data } = result;
+      data.forEach((product) => {
+        const { id, images, name, igName } = product;
+        $("#secret-heart-store-girls-row").append(`
+              <div class="col">
+              <a class="black-text" href="products/${id}">
+                <div>
+                  <img
+                    width="300"
+                    height="400"
+                    src="${images[0].url}"
+                    alt="review-1"
+                  />
+                </div>
+                <div class="text-review-1">
+                  <h6 class="m-t-10">${name}</h6>
+                  <h6>${igName}</h6>
+                </div>
+              </a>
+            </div>
+            `);
+      });
+    });
+  }
 
-    getNewArrivalProduct();
-    getBestSellerProducts();
-  </script>
+  getNewArrivalProduct();
+  getBestSellerProducts();
+  getStoreGirlsProducts();
+</script>
