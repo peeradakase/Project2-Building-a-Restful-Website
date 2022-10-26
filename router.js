@@ -13,6 +13,9 @@ router.get('/my/orders', require('./src/controllers/pages/my/orders/index.js'));
 router.get('/products/:id', require('./src/controllers/pages/products/show.js'));
 
 //APIEnd point
+router.get('/api/products/new-arrival', require('./src/controllers/api/products/new-arrival.js'))
+router.get('/api/products/best-seller', require('./src/controllers/api/products/best-seller.js'))
+router.get('/api/products/store-girls', require('./src/controllers/api/products/store-girls.js'))
 router.get('/api/products/:id', require('./src/controllers/api/products/show.js'))
 
 //ค้างหน้า /my/orders/:id

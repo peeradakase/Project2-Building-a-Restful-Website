@@ -28,6 +28,8 @@ model Product {
   id            Int        @id @default(autoincrement())
   name          String
   isHasColor    Boolean    @default(false)
+  isBestSeller  Boolean    @default(false)
+  isStoreGirl   Boolean    @default(false)
   price         Int
   createdAt     DateTime   @default(now())
   updateAt      DateTime   @updatedAt

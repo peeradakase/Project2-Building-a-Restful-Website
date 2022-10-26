@@ -7,16 +7,18 @@
 
   <section class="showcase">
     <div class="container-fluid p-0">
-      <div class="row g-0">
-        <div
-          class="col-lg-6 order-lg-2 text-white showcase-img"
-          style="background-image: url('/img/1.5.jpeg')"
-        ></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2>New Arrivals</h2>
-          <p class="lead mb-0">Latest styles designed by Secret Heart store</p>
+      <a href="#" id="new-arrival-link">
+        <div class="row g-0">
+          <div
+            class="col-lg-6 order-lg-2 text-white showcase-img"
+            style="background-image: url('/img/1.5.jpeg')"
+          ></div>
+          <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+            <h2 class="black-text">New Arrivals</h2>
+            <p class="black-text lead mb-0">Latest styles designed by Secret   Heart store</p>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -29,71 +31,7 @@
         <div class="text">Best Sellers</div>
         <hr />
         <div class="images-best-sellers">
-          <div class="row row-cols-2">
-            <div class="col">
-              <div class="box-image-1-best-sellers">
-                <div>
-                  <img
-                    width="500"
-                    height="600"
-                    src="./img/p-1.png"
-                    alt="image-1"
-                  />
-                </div>
-                <div class="m-13 text-top-1-best-sellers">
-                  <h5>Rocky top</h5>
-                  <h6>120 HKD</h6>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class=" box-image-2-best-sellers">
-                <div>
-                  <img
-                    width="500"
-                    height="600"
-                    src="./img/p-2.png"
-                    alt="image-2"
-                  />
-                </div>
-                <div class="m-13  text-top-2-best-sellers">
-                  <h5>Crumble shirt</h5>
-                  <h6>180 HKD</h6>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="box-image-3-best-sellers">
-                <div>
-                  <img
-                    width="500"
-                    height="600"
-                    src="./img/p-3.png"
-                    alt="image-3"
-                  />
-                </div>
-                <div class="m-13 text-top-3-best-sellers">
-                  <h5>Wafer top</h5>
-                  <h6>140 HKD</h6>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="box-image-4-best-sellers">
-                <div>
-                  <img
-                    width="500"
-                    height="600"
-                    src="./img/p-4.png"
-                    alt="image-4"
-                  />
-                </div>
-                <div class="m-13 text-top-4-best-sellers">
-                  <h5>Chloe dress</h5>
-                  <h6>120 HKD</h6>
-                </div>
-              </div>
-            </div>
+          <div id="best-sellers-row" class="row row-cols-2">
           </div>
         </div>
       </div>
@@ -179,3 +117,62 @@
 </div>
 
 <%- contentFor('scripts') %>
+  <script>
+    function getNewArrivalProduct() {
+      axios
+      .get('/api/products/new-arrival')
+      .then((result) => {
+        //reult.data.images
+        // 1. Show New arrival product image
+        console.log('result: ',result)
+        const { data: { images, id } } = result;
+        console.log('images: ',images)
+        const productImage = images[0];
+
+
+        if (productImage) {
+          $('#new-arrival-product-image').append(`<img src="${productImage.url}" alt="">`)
+        }
+
+        // 2. Change new arrival product link
+        $('#new-arrival-link').attr('href', `products/${id}`)
+      });
+    }
+
+    function getBestSellerProducts() {
+      // get Best Seller Products
+      axios
+        .get('/api/products/best-seller')
+        .then((result) => {
+          // data is best seller products
+          const { data } = result;
+          data.forEach((product) => {
+            const { id, images, name, price } = product;
+            $('#best-sellers-row').append(`
+            <div class="col">
+              <a class="black-text" href="products/${id}">
+                <div class="box-image-1-best-sellers">
+                  <div>
+                    <img
+                      width="500"
+                      height="600"
+                      src="${images[0].url}"
+                      alt="image-1"
+                    />
+                  </div>
+                  <div class="m-13 text-top-1-best-sellers">
+                    <h5>${name}</h5>
+                    <h6>${price} HKD</h6>
+                  </div>
+                </div>
+              </a>
+            </div>
+            `)
+
+          })
+        })
+    }
+
+    getNewArrivalProduct();
+    getBestSellerProducts();
+  </script>
