@@ -1,16 +1,17 @@
 <%- contentFor('styles') %>
-<link rel="stylesheet" href="/styles/signup.css">
+<link rel="stylesheet" href="/styles/signup.css" />
 
 <%- contentFor('body') %>
 <h1>Sign Up</h1>
 <div class="container">
-  <form action="">
+  <form id="signup-form">
     <div class="form-floating mb-3">
       <input
         type="name"
         class="form-control"
         id="floatingInput"
         placeholder=" NAME"
+        name="name"
       />
       <label for="floatingInput"> NAME</label>
     </div>
@@ -18,12 +19,16 @@
     <div class="form-floating mb-3">
       <input
         type="email"
-        class="form-control is-invalid"
-        id="floatingInput"
+        class="form-control"
+        id="email-input"
         placeholder="EMAIL"
+        name="email"
       />
-      <label for="floatingInput">EMAIL</label>
-      <div id="validationServer03Feedback" class="invalid-feedback">
+      <label for="email-input">EMAIL</label>
+      <div
+        id="email-feedback"
+        class="invalid-feedback input-feedback"
+      >
         Please provide a valid email.
       </div>
     </div>
@@ -31,9 +36,10 @@
     <div class="form-floating m-b-30">
       <input
         type="phone number"
-        class="form-control is-invalid"
+        class="form-control"
         id="floatingInput"
         placeholder="PHONE NUMBER"
+        name="phoneNumber"
       />
       <label for="floatingInput">PHONE NUMBER</label>
       <div id="validationServer03Feedback" class="invalid-feedback">
@@ -45,28 +51,109 @@
       <input
         type="password"
         class="form-control"
-        id="floatingPassword"
+        id="password-input"
         placeholder="PASSWORD"
+        name="password"
       />
-      <label for="floatingPassword"> PASSWORD</label>
+      <label for="password-input"> PASSWORD</label>
+      <div
+        id="password-feedback"
+        class="invalid-feedback input-feedback"
+      >
+        Please provide a valid password.
+      </div>
     </div>
 
     <div class="form-floating">
       <input
-        type="confirm-password"
+        type="password"
         class="form-control"
-        id="floatingPassword"
+        id="password-confirm-input"
         placeholder="CONFIRM PASSWORD"
+        name="passwordConfirmation"
+
       />
-      <label for="floatingPassword">CONFIRM PASSWORD</label>
+      <label for="password-confirm-input">CONFIRM PASSWORD</label>
+      <div
+        id="password-confirm-feedback"
+        class="invalid-feedback input-feedback"
+      >
+        Please provide a valid confirm password.
+      </div>
     </div>
 
     <div class="m-t-32 d-grid gap-2 col-6 mx-auto">
-        <button class="general-button btn btn-primary m-t-30 m-b-100" type="button">
-          Sign Up
-        </button>
-      </div>
+      <button
+        class="general-button btn btn-primary m-t-30 m-b-100"
+        type="submit"
+      >
+        Sign Up
+      </button>
+    </div>
   </form>
 </div>
 
 <%- contentFor('scripts') %>
+
+<script>
+  function handleSignup(e) {
+    // To prevent default form submit behavior
+    e.preventDefault();
+    // 2. Get data from Signup form
+    const data = new FormData(e.target);
+
+    // 2.1 Validata data (optional)
+    // 2.2 Clear exited error state before send data to server
+    $("input").removeClass("is-invalid");
+    $(".invalid-feedback").hide();
+
+    // 3. Send form data to server(backend)
+    axios
+      .post("/api/auth/signup", data, {
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+
+      // 4. Check signup result (from backend)
+      .then((result) => {
+        // 4.1 If success then redirect to previous page
+        // 4.1.1 If we have previous page redirect to previous page
+        const queryParams = new URLSearchParams(window.location.search);
+        if (queryParams.has("previous_page")) {
+          window.location.href = queryParams.get("previous_page");
+        } else {
+          // 4.2.2 If no Previous page redirect to home
+          window.location.href = "/";
+        }
+      })
+
+      .catch((err) => {
+        // 4.2 if Signup fail then show error message
+        const errData = err?.response?.data;
+        // if email error
+        if (errData?.email) {
+          // Add invalid class to email input
+          $('#email-input').addClass('is-invalid');
+          $("#email-feedback").show();
+        }
+
+        //if password error
+        if (errData?.password) {
+          //Add invalid class to password input
+          $('#password-input').addClass('is-invalid');
+          $("#password-feedback").show();
+        }
+
+        //if confirm password error
+        if (errData?.passwordConfirmation) {
+          //Add invalid class to password input
+          $('#password-confirm-input').addClass('is-invalid');
+          $("#password-confirm-feedback").show();
+        }
+      })
+  }
+
+  // 1. submit form
+  $("#signup-form").submit(handleSignup);
+</script>
