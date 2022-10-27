@@ -21,7 +21,8 @@
 .dropdown-and-username {
   display: flex;
   justify-content: flex-end;
-  padding-right: 44px;
+  padding-right: 80px;
+
 }
 
 nav {

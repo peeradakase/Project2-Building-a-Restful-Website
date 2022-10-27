@@ -9,6 +9,37 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <%- scripts %>
+
+    <script>
+      function getAccountDetailAndUpdateNavBar() {
+        axios.get('/api/my/account-detail')
+          .then((result) => {
+            $('.public-nav-item').hide();
+            $('.private-nav-item').show();
+            const { data: {name} } = result;
+            $('#nav-item-name').text(name);
+          })
+          .catch(() => {
+            $('.public-nav-item').show();
+            $('.private-nav-item').hide();
+            $('#nav-item-name').text(name);
+          })
+      }
+      getAccountDetailAndUpdateNavBar();
+
+      //Log out
+      $('#nav-item-logout').click(function () {
+        axios.delete('/api/auth/logout')
+          .then(() => {
+            window.location.href = "/";
+          })
+          .catch(() => {
+            alert('Failed Logout Please try again later')
+          })
+      })
+    </script>
+
+
 </body>
 
 </html>

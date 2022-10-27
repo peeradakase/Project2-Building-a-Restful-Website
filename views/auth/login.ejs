@@ -5,38 +5,86 @@
 <%- contentFor('body') %>
 <h1>Log In</h1>
 <div class="container">
-  <form action="">
+  <form id="login-form">
     <div class="form-floating mb-3">
       <input
         type="email"
-        class="form-control is-invalid"
-        id="floatingInput"
+        class="form-control"
+        id="email-input"
         placeholder="EMAIL"
+        name="email"
       />
-      <label for="floatingInput">EMAIL</label>
-      <div id="validationServer03Feedback" class="invalid-feedback">
-        Please provide a valid email.
+      <label for="email-input">EMAIL</label>
+      <div id="email-feedback" class="invalid-feedback">
+        Please provide a valid email
       </div>
     </div>
+
+
     <div class="form-floating mb-3 m-t-30">
       <input
         type="password"
         class="form-control"
-        id="floatingPassword"
+        id="password-feedback"
         placeholder="PASSWORD"
+        name="password"
       />
-      <label for="floatingPassword">PASSWORD</label>
+      <label for="password-feedback">PASSWORD</label>
+      <div id="password-input" class="invalid-feedback">
+        Please provide a valid password
+      </div>
     </div>
     <div class="d-grid gap-2 col-6 mx-auto">
       <button
         class="general-button btn btn-primary m-t-30 m-b-50"
-        type="button"
+        type="submit"
       >
-        UPDATE MY PASSWORD
+        log in
       </button>
     </div>
 
-    <div class="text-center"><a href="">Sign Up</a></div>
+    <div class="text-center"><a href="/auth/signup">Sign Up</a></div>
   </form>
 </div>
 <%- contentFor('scripts') %>
+
+<script>
+   function handleLogin(e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    $("input").removeClass("is-invalid");
+    $(".invalid-feedback").hide();
+
+    axios
+      .post("/api/auth/login", data, {
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+      .then((result) => {
+        const queryParams = new URLSearchParams(window.location.search);
+        if (queryParams.has("previous_page")) {
+          window.location.href = queryParams.get("previous_page");
+        } else {
+          // 4.2.2 If no Previous page redirect to home
+          window.location.href = "/";
+        }
+      })
+
+      .catch((err) => {
+        const errData = err?.response?.data;
+        if (errData?.email) {
+          $('#email-input').addClass('is-invalid');
+          $("#email-feedback").show();
+        }
+        if (errData?.password) {
+          //Add invalid class to password input
+          $('#password-input').addClass('is-invalid');
+          $("#password-feedback").show();
+        }
+      })
+  }
+
+  $("#login-form").submit(handleLogin);
+
+</script>

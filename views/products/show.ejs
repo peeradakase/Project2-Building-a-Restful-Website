@@ -20,23 +20,49 @@
 
           <p class="text-left">Color: Select a color</p>
           <div class="product-color-box">
-            <button class="white m-l-r-5"></button>
-            <button class="purple m-l-r-5"></button>
-            <button class="black m-l-r-5"></button>
+            <button data-color="white" class="white m-l-r-5"></button>
+            <button data-color="purple" class="purple m-l-r-5"></button>
+            <button data-color="black" class="black m-l-r-5"></button>
           </div>
 
           <p class="text-description-center">Size: Select a size</p>
           <div class="box-size-buttons">
-            <button type="button" class="m-l-r-5 btn btn-outline-dark">XXS</button>
-            <button type="button" class="m-l-r-5 btn btn-outline-dark">XS</button>
-            <button type="button" class="m-l-r-5 btn btn-outline-dark">S</button>
-            <button type="button" class="m-l-r-5 btn btn-outline-dark">M</button>
-            <button type="button" class="m-l-r-5 btn btn-outline-dark">L</button>
-            <button type="button" class="m-l-r-5 btn btn-outline-dark">XL</button>
+            <button data-size="XXS" type="button" class="m-l-r-5 btn btn-outline-dark">XXS</button>
+            <button data-size="XS" type="button" class="m-l-r-5 btn btn-outline-dark">XS</button>
+            <button data-size="S" type="button" class="m-l-r-5 btn btn-outline-dark">S</button>
+            <button data-size="M" type="button" class="m-l-r-5 btn btn-outline-dark">M</button>
+            <button data-size="L" type="button" class="m-l-r-5 btn btn-outline-dark">L</button>
+            <button data-size="XL" type="button" class="m-l-r-5 btn btn-outline-dark">XL</button>
           </div>
-          <button type="button" class="buy-button btn btn-outline-dark">
+
+          <div class="m-t-10 row m-b-20">
+            <div class="col-2 text-left">
+              Pieces
+            </div>
+            <div class="col-3">
+              <input
+              id="product-amount"
+              min="1"
+              type="number"
+              class="form-control"
+              value="1"
+              required
+              >
+            </div>
+
+          </div>
+
+          <button
+          id="buy-button"
+          type="button" class="buy-button btn btn-outline-dark">
             BUY
           </button>
+          <a
+          id="signup-button"
+          href="#"
+          class="buy-button btn btn-outline-dark"
+          >Sign up
+        </a>
         </div>
       </div>
     </div>
@@ -54,7 +80,8 @@
   );
 
   const productId = window.location.href.split("/").reverse()[0];
-
+  let size = null;
+  let color = null;
   // browserขอข้อมูลจาก routeนี้
   axios
     .get(`/api/products/${productId}`)
@@ -90,5 +117,59 @@
     $(".product-color-box button").removeClass("active");
     //add Active class to button which is clicked
     $(this).addClass("active");
+    color = $(this).attr('data-color');
   });
+
+  $('.box-size-buttons button').click(function (e) {
+
+    $(".box-size-buttons button").removeClass("active");
+    $(this).addClass("active");
+    size = $(this).attr('data-size');
+  });
+
+  function getAccountDetailAndShowButton() {
+    axios.get('/api/my/account-detail')
+      .then((result) => {
+        $('#signup-button').hide();
+        $('#buy-button').show();
+      })
+      .catch(() => {
+        $('#signup-button').show();
+        $('#buy-button').hide();
+      })
+  }
+
+  $('#buy-button').click(function () {
+    if (!color) {
+      alert('Please Select Color')
+      return
+    }
+
+    if (!size) {
+      alert('Please Select Size')
+      return
+    }
+
+    const data = {
+      color,
+      size,
+      quantity: parseInt($('#product-amount').val()),
+      productId: parseInt(productId)
+    }
+
+    axios.post('/api/orders' ,data, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(() => {
+      window.location.href = '/my/orders/confirmation'
+    }).catch(() => {
+      alert('Failed Buy Order please try again');
+    })
+
+  })
+
+  getAccountDetailAndShowButton()
+
+  $('#signup-button').attr('href', `/auth/signup?previous_page=/products/${productId}`)
 </script>

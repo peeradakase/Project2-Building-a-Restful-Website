@@ -5,25 +5,29 @@
 <div class="container">
   <h1>Account Details</h1>
   <div class="input-account-details">
-    <form action="form-account-details">
+    <form id="account-detail-form">
+
       <div class="form-floating mb-3">
         <input
           type="name"
           class="form-control"
-          id="floatingInput"
+          id="name-input"
           placeholder=" NAME"
+          name="name"
         />
-        <label for="floatingInput"> NAME</label>
+        <label for="name-input"> NAME</label>
       </div>
 
       <div class="form-floating mb-3">
         <input
           type="email"
-          class="form-control is-invalid"
-          id="floatingInput"
+          class="form-control"
+          id="email-input"
           placeholder="EMAIL"
+          name="email"
+          disabled required
         />
-        <label for="floatingInput">EMAIL</label>
+        <label for="email-input">EMAIL</label>
         <div id="validationServer03Feedback" class="invalid-feedback">
           Please provide a valid email.
         </div>
@@ -33,31 +37,34 @@
         <input
           type="address"
           class="form-control"
-          id="floatingInput"
+          id="address-input"
           placeholder="ADDRESS"
+          name="address"
         />
-        <label for="floatingInput">ADDRESS</label>
+        <label for="address-input">ADDRESS</label>
       </div>
 
       <div class="form-floating m-b-30">
         <input
           type="phone number"
-          class="form-control is-invalid"
-          id="floatingInput"
+          class="form-control"
+          id="phone-number-input"
           placeholder="PHONE NUMBER"
+          name="phoneNumber"
         />
-        <label for="floatingInput">PHONE NUMBER</label>
+        <label for="phone-number-input">PHONE NUMBER</label>
         <div id="validationServer03Feedback" class="invalid-feedback">
           Please provide a valid phone number.
         </div>
       </div>
 
       <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="general-button btn btn-primary mb-3" type="button">
+        <button class="general-button btn btn-primary mb-3" type="submit">
           UPDATE MY DETAILS
         </button>
       </div>
 
+      <!--
       <div class="form-floating mb-3 m-t-30">
         <input
           type="old-password"
@@ -93,8 +100,49 @@
           UPDATE MY PASSWORD
         </button>
       </div>
+      -->
     </form>
   </div>
 </div>
 
 <%- contentFor('scripts') %>
+
+<script>
+  //show account detail
+  // 1. Request account detail info
+  axios.get('/api/my/account-detail')
+    .then((result) => {
+      // 2. if success, update account detail form
+      const { data: {name, email, address, phoneNumber} } = result;
+      //update inputa value
+      $('#name-input').val(name);
+      $('#email-input').val(email);
+      $('#address-input').val(address);
+      $('#phone-number-input').val(phoneNumber);
+    })
+    .catch(() => {
+      // 3. if failed then redirect to home page
+      window.location.href = '/'
+    })
+
+  //Update account datail
+  function handleUpdate(e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    axios.put('/api/my/account-detail', data, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then ((result) => {
+      alert('Success Update account detail');
+    })
+    .catch((err) => {
+      alert('Fail Update account detail, Please try again later');
+    });
+  }
+
+  $('#account-detail-form').submit(handleUpdate);
+
+
+</script>

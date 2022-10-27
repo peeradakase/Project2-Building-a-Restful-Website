@@ -5,7 +5,8 @@
   <div class="dropdown-and-username">
     <div class="collapse navbar-collapse show" id="navbar-list-4">
       <ul class="navbar-nav">
-        <li class="nav-item dropdown">
+        <!--private page-->
+        <li class="nav-item dropdown private-nav-item">
           <a
             class="m-t-15 nav-link dropdown-toggle"
             href="#"
@@ -24,16 +25,32 @@
           </a>
 
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Dashboard</a>
-            <a class="dropdown-item" href="#">Edit Profile</a>
-            <a class="dropdown-item" href="#">Log Out</a>
+
+            <a
+            class="dropdown-item"
+            href="my/account-detail">Account detail</a>
+
+            <a
+            id="nav-item-logout"
+            class="dropdown-item"
+            href="#">Log Out</a>
           </div>
         </li>
+
+        <!--public page-->
+        <li class="nav-item public-nav-item">
+          <a class="nav-link" href="/auth/login">Login</a>
+        </li>
+        <li class="nav-item public-nav-item">
+          <a class="nav-link" href="/auth/signup">Signup</a>
+        </li>
+
       </ul>
     </div>
 
     <div>
-      <div class="p-l-33 m-t-24">Hi MO</div>
+      <div id="nav-item-name"
+      class="p-l-33 m-t-24 private-nav-item"></div>
     </div>
   </div>
 </nav>

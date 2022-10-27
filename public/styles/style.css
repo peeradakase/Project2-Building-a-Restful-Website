@@ -30,3 +30,15 @@ h1 {
   transition: 0.1s;
 
 }
+
+.navbar-nav {
+  flex-direction: row;
+}
+
+.private-nav-item {
+  display: none;
+}
+
+.nav-item {
+  margin-right: 15px;
+}
