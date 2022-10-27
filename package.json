@@ -9,7 +9,8 @@
     "start": "node main.js",
     "start:watch": "nodemon ./main.js",
     "prisma:init": "npx prisma init",
-    "prisma:migrate:dev": "npx prisma migrate dev"
+    "prisma:migrate:dev": "npx prisma migrate dev",
+    "postinstall": "npx prisma generate"
   },
   "repository": {
     "type": "git",
