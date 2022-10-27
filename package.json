@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:watch": "nodemon ./serve.js",
+    "start": "node main.js",
+    "start:watch": "nodemon ./main.js",
     "prisma:init": "npx prisma init",
     "prisma:migrate:dev": "npx prisma migrate dev"
   },
