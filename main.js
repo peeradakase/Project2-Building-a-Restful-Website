@@ -22,6 +22,7 @@ const router = require('./router');
 //5. จำเอา  create app from express
 //define app เพื่อ เอาไปใช้ในบรรทัดล่าง
 const app = express();
+const port = process.env.PORT || 3000;
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -61,6 +62,6 @@ app.use('/', router);
 
 //ต่อไปคือ ให้run ที่portไหน
 //ถ้าapp run ที่port3000แล้ว ให้ทำcallback
-app.listen(3000, () => {
-  console.log('Application starts at Port 3000')
+app.listen(port, () => {
+  console.log(`Application starts at Port ${port}`)
 })
